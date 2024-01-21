@@ -126,6 +126,17 @@ def get_commands(process_status):
                 command+= ["-c", "copy"]
             command+= ['-y', f'{str(output_file)}']
             return command, log_file, input_file, output_file, file_duration
+        # Automatically set metadata during merge
+    change_metadata = get_data()[process_status.user_id]['metadata']
+    if metadata_info:
+        command += [
+            "-metadata:s:v", f"title={custom_metadata_title}",
+            "-metadata", f"title={custom_metadata_title}",
+            "-metadata:s:v", f"channel={custom_metadata_title}",
+            "-metadata:s:a", f"title={custom_metadata_title}",
+            "-metadata:s:s", f"title={custom_metadata_title}"
+        ]
+        
 
     elif process_status.process_type==Names.softmux:
         softmux_preset =  get_data()[process_status.user_id]['softmux']['preset']
