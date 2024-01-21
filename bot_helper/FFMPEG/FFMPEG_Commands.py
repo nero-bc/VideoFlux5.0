@@ -123,7 +123,7 @@ def get_commands(process_status):
         command += ["-c", "copy"]
 
     # Automatically set metadata during merge
-    custom_metadata_title = get_data()[process_status.user_id]['metadata']
+    change_metadata = get_data()[process_status.user_id]['metadata']
     command += [
         "-metadata:s:v", f"title={custom_metadata_title}",
         "-metadata", f"title={custom_metadata_title}",
