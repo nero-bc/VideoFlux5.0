@@ -124,13 +124,14 @@ def get_commands(process_status):
 
     # Automatically set metadata during merge
     change_metadata = get_data()[process_status.user_id]['metadata']
-    command += [
-        "-metadata:s:v", f"title={custom_metadata_title}",
-        "-metadata", f"title={custom_metadata_title}",
-        "-metadata:s:v", f"channel={custom_metadata_title}",
-        "-metadata:s:a", f"title={custom_metadata_title}",
-        "-metadata:s:s", f"title={custom_metadata_title}"
-    ]
+    if metadata_info:
+        command += [
+            "-metadata:s:v", f"title={custom_metadata_title}",
+            "-metadata", f"title={custom_metadata_title}",
+            "-metadata:s:v", f"channel={custom_metadata_title}",
+            "-metadata:s:a", f"title={custom_metadata_title}",
+            "-metadata:s:s", f"title={custom_metadata_title}"
+        ]
 
     command += ['-y', f'{str(output_file)}']
     return command, log_file, input_file, output_file, file_duration
